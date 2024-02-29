@@ -1,0 +1,7 @@
+1- strel(element size=3)
+2- strel(element size=5)
+3- strel(element size=5)
+4- strel(element size=6)
+5- strel(element size=5)
+6- strel(element size=4)
+7- strel(element size=7)
