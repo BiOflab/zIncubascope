@@ -1,21 +1,19 @@
 %%
 clear all
+
+% LOAD DATA FILE AND MASK
 Vid=VideoReader('BF-D4_2.avi');
-
-
 Vid_Mask= tiffreadVolume('MASK_BF-D4_2.tif');
 
-% VideoReader('MASK_hypoosmotic shock.avi');
 
-% V_m=read(Vid,1);
-
+% DEFINE DIRECTORY WHERE YOU WANT TO SAVE THE OUTPUT DATA
 folder_save='C:\Users\Anirban\Desktop\Incubascope Data\tubes 0.8M';
-%
+
 st=1;
 
 rot=39;
 
-%%
+%% PROCESS ALL THE FRAMES TAKEN AT DIFFERENT TIMES
 f=figure;
 
 for fr=1:1:23
