@@ -1,14 +1,15 @@
 clear all
+
+% LOAD DATA FILE AND MASK
 Vid=VideoReader('Composite-1-80.avi');
-
-
 Vid_Mask= tiffreadVolume('MASK_Composite-2-1-2.tif');
 
 % VideoReader('MASK_hypoosmotic shock.avi');
 
 % V_m=read(Vid,1);
 
-folder_save='C:\Users\Anirban\Desktop\Incubascope Data\composite2\FOR PAPER';
+% DEFINE DIRECTORY WHERE YOU WANT TO SAVE THE OUTPUT DATA
+folder_save='C:\Users\Amaury\Desktop';
 % Im_mask=load("Im_final_mask_store.mat");
 
 % Vid_Mask=Im_mask.Im_final_mask_store;
@@ -19,14 +20,17 @@ folder_save='C:\Users\Anirban\Desktop\Incubascope Data\composite2\FOR PAPER';
 st=1;
 tic
 
+%DEFINE PARAMETERS
 lim_lumen=65;
 rot_start=0;
 rot_end=360;
 gap=40;
 
-frame_interval=5;
-rot_interval=5;
+frame_interval=5;  % PROCESS EVERY 5 FRAMES
+rot_interval=5;  %PROCESS EVERY 5 DEGREES OF ROTATION
 
+
+%PROCESS IN A LOOP THE FRAMES TAKEN AT DIFFERENT TIMES
 V_rot_temp= [0;0] ;
 for fr=1:frame_interval:50
     n=fr;
@@ -35,6 +39,7 @@ V=squeeze(V(:,:,1));
 
 f=figure;
 
+% PROCESS EACH FRAME BY ROTATING IT
 for rot=rot_start:rot_interval:rot_end
 
 Im=V;
@@ -207,7 +212,7 @@ title(strcat(int2str(fr)));
 
 end
 
-
+%SAVE SCREEN CAPTURE OF THE OUTPUT DATA
 saveas(f,strcat(folder_save,'\frame_',num2str(fr),'.tif'));
 close all
 
@@ -257,7 +262,7 @@ end
 
 % t_thick=load("t_thick.mat").t_thick;
 
-lim=48;
+lim=10;
 start=1;
 
 x_plot=t_thick(start:lim,1);
