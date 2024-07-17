@@ -4,18 +4,23 @@
 
 clear all
 
+%LOAD DATA FILE AND MASK
 file='BF_1_vid-6';
 Vid=VideoReader(strcat(file,'.avi'));
 
 Vid_Mask= tiffreadVolume('MASK_BF_full-6.tif');
 
-folder_save='C:\Users\Anirban\Desktop\Incubascope Data\yeast_capsule_27092023\analyiss\analyzed_global threshold';
+% DEFINE DIRECTORY WHERE YOU WANT TO SAVE DATA
+folder_save='C:\Users\Amaury\Desktop\';
 
-% figure
+%DEFINE background intensity value
 tic
 ref_intensity=142;
 
+
+%PROCESS EACH FRAME OF THE VIDEO
 for fr=1:55 
+    
 % f=figure
 V=read(Vid,fr);
 Im=squeeze(V(:,:,1));
@@ -57,6 +62,8 @@ end
 
 end
 
+
+%SAVE OUTPUT DATA
 save(strcat(file,'_vol_pixels.mat'),"vol_pixel",'-mat');
 toc
 
@@ -71,8 +78,9 @@ lim=50;
 start=3;
 
 Y_store=[];
-
 x_plot=((0:15:15*(lim-start)))'+30;
+
+%PROCESS THE OUTPUT DATA FOR EACH EXPERIMENTS, HERE 6 IN OUR CASE
 for video_num=1:6
 
 vol_pixel=load(strcat('BF_1_vid-',int2str(video_num),'_vol_pixels.mat')).vol_pixel;
